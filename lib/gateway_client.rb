@@ -1,11 +1,20 @@
 require "gateway_client/version"
 require "faraday"
+require "openssl"
+require "json"
+
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 module GatewayClient
   class Client
     def initialize ip, username, password
       @connection = Faraday.new "https://#{ip}"
       @connection.basic_auth username, password
+    end
+
+    def get uri
+      response = @connection.get uri
+      JSON.parse(response.body)
     end
     
     def get_users

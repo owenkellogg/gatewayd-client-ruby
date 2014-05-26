@@ -1,29 +1,10 @@
 # GatewayClient
 
-TODO: Write a gem description
+This library is a ruby gem for interacting with a Ripple
+Gatewayd daemon / api server.
 
-## Installation
+After setting up a gatewayd server, use its public ip
+address, admin username and api key to instantiate a new
+gateway client object in ruby, and interact with the gatewayd
+http api at your will.
 
-Add this line to your application's Gemfile:
-
-    gem 'gateway_client'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install gateway_client
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/gateway_client/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request

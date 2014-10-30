@@ -4,11 +4,12 @@ require "json"
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
-module Gateway
+module Gatewayd
   class Client
-    def initialize ip, username, password
-      @connection = Faraday.new "https://#{ip}"
-      @connection.basic_auth username, password
+    def initialize host, key, options={}
+      protocol = options[:ssl] ? 'https' : 'http'
+      @connection = Faraday.new "#{protocol}://#{host}:5000"
+      @connection.basic_auth 'admin', key
     end
 
     def get uri, params={}
@@ -39,7 +40,7 @@ module Gateway
       get "/v1/users/#{user_id}"
     end
 
-    def get_external_transactions params={}
+    def get_external_transactions
       get '/v1/external_transactions', params
     end
 
@@ -51,8 +52,10 @@ module Gateway
       get '/v1/ripple_addresses', params
     end
 
-    def get_ripple_transactions params
-      get '/v1/ripple_transactions', params
+    def get_ripple_transactions params={}
+      get('/v1/ripple_transactions', params).symbolize_keys[:ripple_transactions]
     end
+
   end
 end
+

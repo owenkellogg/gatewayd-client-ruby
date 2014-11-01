@@ -20,6 +20,8 @@ http api at your will.
       currency: 'XAG'
     }
 
+    client.get '/v1/payments/failed'
+
     client.get_ripple_transactions
 
     client.get_ripple_addresses
